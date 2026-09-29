@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 13th Monthsary & I'm Sorry ❤️</title>
+    <style>
+        :root {
+            --bg-color: #fff0f3;
+            --card-bg: #ffffff;
+            --primary-color: #ff4d6d;
+            --secondary-color: #c9184a;
+            --text-color: #590d22;
+            --accent-color: #ff758f;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            max-width: 700px;
+        }
+
+        h1 {
+            font-size: 2.3rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 650px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.15);
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .apology-box {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #4a1525;
+            text-align: left;
+            background: #fff8fa;
+            padding: 20px;
+            border-left: 5px solid var(--primary-color);
+            border-radius: 8px;
+        }
+
+        /* Photo Gallery Styling */
+        .photo-section {
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 12px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .photo-card {
+            background: #fff0f3;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(201, 24, 74, 0.1);
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: 2px dashed var(--accent-color);
+            position: relative;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-placeholder-text {
+            font-size: 0.8rem;
+            color: var(--secondary-color);
+            padding: 5px;
+        }
+
+        /* Spotify Player Box Styling */
+        .music-box {
+            background: #fff8fa;
+            border: 1px solid #ffccd5;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 25px 0;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.05);
+            text-align: center;
+        }
+
+        .music-title {
+            font-weight: bold;
+            font-size: 0.95rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .memories-title {
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 0.95rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+        }
+
+        button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        #forgiveBtn {
+            background-color: #2b9348;
+        }
+        #forgiveBtn:hover {
+            background-color: #1b652f;
+        }
+
+        .hidden-message {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            font-weight: bold;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        /* Floating Envelope Animation Styles */
+        .envelope-wrapper {
+            margin: 30px auto 10px auto;
+            width: 120px;
+            height: 90px;
+            background: #ff758f;
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+            animation: floatEnvelope 3s ease-in-out infinite;
+            box-shadow: 0 8px 20px rgba(201, 24, 74, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .envelope-wrapper:hover {
+            transform: scale(1.1);
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 60px solid transparent;
+            border-right: 60px solid transparent;
+            border-top: 50px solid #c9184a;
+            transform-origin: top;
+            transition: transform 0.4s ease;
+        }
+
+        .envelope-heart {
+            font-size: 1.8rem;
+            z-index: 2;
+            animation: pulseHeart 1.5s infinite;
+        }
+
+        .envelope-label {
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        @keyframes floatEnvelope {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @keyframes pulseHeart {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        /* Romantic Letter Card Style */
+        .letter-container {
+            display: none;
+            margin-top: 25px;
+            background: #fcf6f7;
+            border: 2px dashed var(--accent-color);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: left;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .letter-container h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .letter-body {
+            font-family: 'Georgia', serif;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #3f1a24;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Floating Hearts Background Animation */
+        .heart {
+            position: absolute;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            user-select: none;
+            pointer-events: none;
+            animation: floatUp 4s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Background Hearts -->
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '100vh';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+        setInterval(createHeart, 400);
+    </script>
+
+    <header>
+        <h1>Happy 13th Monthsary, My Louis ❤️</h1>
+        <p class="subtitle">Even through the rough patches, my heart still chooses you.</p>
+    </header>
+
+    <div class="container">
+        <div class="apology-box">
+            <p><strong>Hi, baby!</strong></p>
+            <p>I know we recently hit a bump in the road, and our misunderstanding hurt us both. I am truly so sorry for my part in it. Our 13 months together mean everything to me, and the last thing I ever want to do is cause you pain or disconnect us.</p>
+            <p>Thank you for sticking by me, for growing with me, and for being my safe space. May we leave the misunderstandings behind and celebrate us today? 🥺</p>
+        </div>
+
+        <!-- SPOTIFY MUSIC PLAYER SECTION -->
+        <div class="music-box">
+            <div class="music-title">🎵 Our Favorite Song</div>
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/7KD8oUUpidul2ROxTIhPAw?utm_source=generator&si=ec570abd06c9478c" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+
+        <!-- Photo Gallery Section -->
+        <div class="photo-section">
+            <div class="section-title">📸 Our Favorite Memories Together</div>
+            <div class="photo-grid">
+                <div class="photo-card">
+                    <img src="photo1.jpg" alt="Memory 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="photo-placeholder-text" style="display:none;">Add photo1.jpg</span>
+                </div>
+                <div class="photo-card">
+                    <img src="photo2.jpg" alt="Memory 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="photo-placeholder-text" style="display:none;">Add photo2.jpg</span>
+                </div>
+                <div class="photo-card">
+                    <img src="photo3.jpg" alt="Memory 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="photo-placeholder-text" style="display:none;">Add photo3.jpg</span>
+                </div>
+                <div class="photo-card">
+                    <img src="photo4.jpg" alt="Memory 4" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="photo-placeholder-text" style="display:none;">Add photo4.jpg</span>
+                </div>
+                <div class="photo-card">
+                    <img src="photo5.jpg" alt="Memory 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="photo-placeholder-text" style="display:none;">Add photo5.jpg</span>
+                </div>
+                <div class="photo-card">
+                    <img src="photo6.jpg" alt="Memory 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="photo-placeholder-text" style="display:none;">Add photo6.jpg</span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="memories-title">Can we please forgive and forget, and celebrate our special day? 🥺</div>
+        
+        <div class="btn-group">
+            <button id="forgiveBtn" onclick="acceptedApology()">Yes, I forgive you ❤️</button>
+            <button id="treatBtn" onclick="treatAction()">What's my treat? 🍦</button>
+        </div>
+
+        <div id="responseMessage" class="hidden-message"></div>
+
+        <!-- Floating Animated Envelope -->
+        <div style="margin-top: 35px;">
+            <div class="envelope-label">✨ Click the floating letter below ✨</div>
+            <div class="envelope-wrapper" onclick="toggleLetter()">
+                <div class="envelope-flap" id="envelopeFlap"></div>
+                <div class="envelope-heart">💌</div>
+            </div>
+        </div>
+
+        <!-- Hidden Romantic Letter Section -->
+        <div id="letterContainer" class="letter-container">
+            <h3>To My Dearest Boyfriend,</h3>
+            <div class="letter-body">
+                <p><strong>Happy 13th monthsary to us, my louis.</strong><br><br>
+                Looking back at how far we’ve come, I am just so amazed and grateful. Thirteen months might look like just a number on a calendar, but to me, it represents 13 months of endless laughs, comforting hugs, late-night talks, and growing together through everything.<br><br>
+                I want to apologize again for our misunderstanding earlier. It honestly broke my heart to have distance between us, because your smile is my favorite thing in the world, beside you is my favorite spot in the universe and your happiness means everything to me. I never want anything to come between us or make you doubt how deeply I care about you.<br><br>
+                Thank you for being my number 1, my safe space, my best friend, and the person who always knows how to calm my storms. Thank you for staying patient with me, for loving me even on my stubborn days, and for choosing us over and over again.<br><br>
+                No matter what arguments or bumps we hit along the way, please always remember that my heart is, and will always be, completely yours. I will always choose you, baby. My heart is always yours, and it will forever long and yearn for you, only you, my louis. Here’s to leaving the little misunderstandings behind, celebrating us today, and creating a million more beautiful memories together.</p>
+                <p>Even through the rough patches, my heart still chooses you. I love you endlessly, and I am so grateful for every moment we share. Here's to many more months and years of love, laughter, and growth together.</p>
+                <p>I love you endlessly, yesterday, today, tomorrow, and always. I love you to infinity and beyond ❤️</p>
+                <p style="text-align: right; margin-top: 20px;">Forever yours, <br><strong>Your Girlfriend, Ikay ❤️</strong></p>   
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function acceptedApology() {
+            const resp = document.getElementById('responseMessage');
+            resp.style.display = 'block';
+            resp.innerHTML = "Yay! Thank you for loving me through everything. I love you endlessly, and here's to many more months ahead! 🥰🥂";
+        }
+
+        function treatAction() {
+            const resp = document.getElementById('responseMessage');
+            resp.style.display = 'block';
+            resp.innerHTML = "Your treat is unlimited hugs and a big cuddle coming your way tomorrow! 🤗";
+        }
+
+        function toggleLetter() {
+            const letter = document.getElementById('letterContainer');
+            const flap = document.getElementById('envelopeFlap');
+            
+            document.getElementById('responseMessage').style.display = 'none';
+            
+            if (letter.style.display === 'block') {
+                letter.style.display = 'none';
+                flap.style.transform = 'rotateX(0deg)';
+            } else {
+                letter.style.display = 'block';
+                flap.style.transform = 'rotateX(180deg)';
+                letter.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+
+</body>
+</html>
